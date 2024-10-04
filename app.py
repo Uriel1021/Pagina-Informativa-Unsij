@@ -27,8 +27,16 @@ def update_data():
         socketio.emit('update_graph', {'data': 'new graph'})
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    return render_template('home.html')
+
+@app.route('/graficas')
+def graficas():
+    return render_template('graficas.html')
+
+@app.route('/mapas')
+def mapas():
+    return render_template('mapas.html')
 
 @app.route('/plot.png')
 def plot():
@@ -55,3 +63,4 @@ if __name__ == '__main__':
     thread.start()
 
     socketio.run(app, debug=True)
+

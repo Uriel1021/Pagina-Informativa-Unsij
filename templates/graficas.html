@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficas</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/graficas">Gráficas</a>
+        <a href="/mapas">Mapas</a>
+    </nav>
+    <h1>Gráficas en tiempo real</h1>
+    <img id="graph" src="/plot.png" alt="Grafica">
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('update_graph', function(msg) {
+            var img = document.getElementById('graph');
+            img.src = '/plot.png?time=' + new Date().getTime(); // Agregar timestamp para evitar el caché
+        });
+    </script>
+</body>
+</html>
